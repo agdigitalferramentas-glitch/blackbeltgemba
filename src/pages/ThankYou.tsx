@@ -1,11 +1,20 @@
 import { CheckCircle } from "lucide-react";
 import Footer from "@/components/Footer";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const ThankYou = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[hsl(var(--navy))] text-[hsl(var(--hero-foreground))]">
+    <div className="min-h-screen flex flex-col text-[hsl(var(--hero-foreground))]">
       {/* Hero Section */}
-      <section className="flex-1 flex flex-col items-center justify-center text-center px-6 py-24 md:py-32">
+      <section className="relative flex-1 flex flex-col items-center justify-center text-center px-6 py-24 md:py-32 overflow-hidden">
+        <img
+          src={heroBg}
+          alt="Background"
+          className="absolute inset-0 w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
+        <div className="absolute inset-0 bg-navy/85" />
         <div className="inline-flex items-center gap-2 bg-[hsl(var(--gold)/0.15)] border border-[hsl(var(--gold)/0.3)] rounded-full px-5 py-2 mb-8">
           <CheckCircle className="w-5 h-5 text-[hsl(var(--gold))]" />
           <span className="text-sm font-medium text-[hsl(var(--gold))]">Inscrição confirmada</span>
