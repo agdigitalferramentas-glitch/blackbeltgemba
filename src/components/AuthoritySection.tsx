@@ -12,32 +12,34 @@ const scrollToTop = () => {
 
 const AuthoritySection = () => {
   return (
-    <section className="py-20 md:py-28 bg-navy text-hero-foreground">
-      <div className="container mx-auto px-4">
+    <section className="py-14 sm:py-20 md:py-28 bg-navy text-hero-foreground">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-16 leading-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-10 sm:mb-16 leading-tight">
             Esse método foi construído dentro de mais de{" "}
             <span className="gold-text">1.000 empresas</span> por quem formou mais de{" "}
             <span className="gold-text">30 mil profissionais</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-14">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-10 sm:mb-14">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="p-6 rounded-xl border border-hero-foreground/10 bg-navy-light/40 backdrop-blur-sm"
+                className={`p-4 sm:p-6 rounded-xl border border-hero-foreground/10 bg-navy-light/40 backdrop-blur-sm ${
+                  index === stats.length - 1 ? "col-span-2 lg:col-span-1" : ""
+                }`}
               >
-                <p className="text-4xl md:text-5xl font-bold gold-text mb-3 font-display">{stat.value}</p>
-                <p className="text-hero-foreground/70 text-sm md:text-base">{stat.label}</p>
+                <p className="text-2xl sm:text-4xl md:text-5xl font-bold gold-text mb-2 sm:mb-3 font-display">{stat.value}</p>
+                <p className="text-hero-foreground/70 text-xs sm:text-sm md:text-base">{stat.label}</p>
               </div>
             ))}
           </div>
 
-          <p className="text-hero-foreground/60 text-base max-w-2xl mx-auto mb-10">
+          <p className="text-hero-foreground/60 text-sm sm:text-base max-w-2xl mx-auto mb-8 sm:mb-10">
             Os profissionais dos cases que estão neste guia usaram exatamente este método. Os números são reais. As promoções aconteceram.
           </p>
 
-          <button onClick={scrollToTop} className="btn-gold text-base md:text-lg font-bold">
+          <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full sm:w-auto">
             Quero o guia gratuito agora
           </button>
         </div>

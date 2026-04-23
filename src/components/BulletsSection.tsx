@@ -16,36 +16,36 @@ const scrollToTop = () => {
 
 const BulletsSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-14 sm:py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center mb-4 sm:mb-6">
             Veja tudo o que você vai receber neste guia
           </h2>
 
-          <div className="max-w-3xl mx-auto mb-14">
-            <p className="text-muted-foreground text-lg text-center leading-relaxed mb-4">
+          <div className="max-w-3xl mx-auto mb-10 sm:mb-14">
+            <p className="text-muted-foreground text-base sm:text-lg text-center leading-relaxed mb-3 sm:mb-4">
               Quem aprende a traduzir indicadores operacionais em impacto financeiro para a diretoria muda de nível — sem depender de política.
             </p>
-            <p className="text-muted-foreground text-lg text-center leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg text-center leading-relaxed">
               Não é mais um conteúdo sobre liderança e soft skills. É um método com frameworks, modelos prontos e cases reais de profissionais que usaram dados no lugar de política para chegar onde queriam.
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {bullets.map((bullet, index) => (
               <div
                 key={index}
-                className="flex gap-4 p-5 rounded-xl bg-card border border-border hover:border-gold/30 transition-colors duration-300 shadow-sm hover:shadow-md"
+                className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-card border border-border hover:border-gold/30 transition-colors duration-300 shadow-sm hover:shadow-md"
               >
-                <CheckCircle className="w-6 h-6 text-gold flex-shrink-0 mt-1" />
-                <p className="text-foreground/90 leading-relaxed">{bullet}</p>
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-gold flex-shrink-0 mt-0.5 sm:mt-1" />
+                <p className="text-foreground/90 leading-relaxed text-sm sm:text-base">{bullet}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-14">
-            <button onClick={scrollToTop} className="btn-gold text-base md:text-lg font-bold">
+          <div className="text-center mt-10 sm:mt-14">
+            <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full sm:w-auto">
               Quero o guia gratuito agora
             </button>
           </div>

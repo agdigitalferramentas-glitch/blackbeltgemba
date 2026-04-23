@@ -6,16 +6,16 @@ const scrollToTop = () => {
 
 const AboutSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-secondary relative overflow-hidden">
+    <section className="py-14 sm:py-20 md:py-28 bg-secondary relative overflow-hidden">
       <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 80% 80%, hsla(var(--gold) / 0.12), transparent 50%)" }} />
-      <div className="container mx-auto px-6 relative z-10">
-        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground text-center mb-12">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground text-center mb-8 sm:mb-12">
           Quem está por trás deste material
         </h2>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center">
+        <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-14 items-center">
           <div className="lg:w-1/2">
-            <div className="space-y-6 text-secondary-foreground/70 text-base sm:text-lg leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 text-secondary-foreground/70 text-sm sm:text-base lg:text-lg leading-relaxed">
               <p>
                 O Gemba Group foi fundado em 2008 por Vânia Batista e Marcelo Rodrigues com um propósito que não mudou desde o primeiro dia: capacitar profissionais para transformar empresas.
               </p>
@@ -28,13 +28,13 @@ const AboutSection = () => {
               <p>
                 Não ensinamos teoria. Ensinamos o que funciona dentro de empresas de verdade, com gente de verdade, gerando resultado que aparece na carreira de quem aplica.
               </p>
-              <p className="text-secondary-foreground/90 font-semibold text-lg">
+              <p className="text-secondary-foreground/90 font-semibold text-base sm:text-lg">
                 Este guia é a porta de entrada para esse método.
               </p>
             </div>
 
-            <div className="mt-10">
-              <button onClick={scrollToTop} className="btn-gold text-base md:text-lg font-bold w-full">
+            <div className="mt-8 sm:mt-10">
+              <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full">
                 Quero o guia gratuito agora
               </button>
             </div>
@@ -44,7 +44,7 @@ const AboutSection = () => {
             <img
               src={gembaTeam}
               alt="Equipe Gemba Group"
-              className="w-full aspect-square object-cover rounded-2xl shadow-2xl"
+              className="w-full aspect-[4/3] sm:aspect-square object-cover rounded-2xl shadow-2xl"
             />
           </div>
         </div>
