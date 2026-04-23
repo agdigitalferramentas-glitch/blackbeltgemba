@@ -1,10 +1,11 @@
-import { CheckCircle, Target, BookOpen, RefreshCw } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import Footer from "@/components/Footer";
 
 const ThankYou = () => {
   return (
-    <div className="min-h-screen bg-[hsl(var(--navy))] text-[hsl(var(--hero-foreground))]">
+    <div className="min-h-screen flex flex-col bg-[hsl(var(--navy))] text-[hsl(var(--hero-foreground))]">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center px-6 py-24 md:py-32">
+      <section className="flex-1 flex flex-col items-center justify-center text-center px-6 py-24 md:py-32">
         <div className="inline-flex items-center gap-2 bg-[hsl(var(--gold)/0.15)] border border-[hsl(var(--gold)/0.3)] rounded-full px-5 py-2 mb-8">
           <CheckCircle className="w-5 h-5 text-[hsl(var(--gold))]" />
           <span className="text-sm font-medium text-[hsl(var(--gold))]">Inscrição confirmada</span>
@@ -29,45 +30,7 @@ const ThankYou = () => {
         </a>
       </section>
 
-      {/* Tips Section */}
-      <section className="px-6 pb-24 md:pb-32 max-w-5xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-          Como tirar o melhor proveito deste material:
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              icon: Target,
-              text: "Aplique o diagnóstico em situações concretas do seu trabalho.",
-            },
-            {
-              icon: BookOpen,
-              text: "Identifique o que está travando o seu fluxo logo nos primeiros passos.",
-            },
-            {
-              icon: RefreshCw,
-              text: "Não busque a perfeição de primeira; siga os passos e busque a melhoria contínua.",
-            },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="bg-[hsl(var(--navy-light))] border border-[hsl(var(--gold)/0.15)] rounded-xl p-6"
-            >
-              <div className="bg-[hsl(var(--gold)/0.15)] w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-                <item.icon className="w-5 h-5 text-[hsl(var(--gold))]" />
-              </div>
-              <p className="text-sm md:text-base text-[hsl(var(--hero-foreground)/0.8)] leading-relaxed">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-center text-sm text-[hsl(var(--hero-foreground)/0.5)] mt-10">
-          Dica extra: Salve esta página nos seus favoritos caso precise acessar o guia em outro dispositivo mais tarde.
-        </p>
-      </section>
+      <Footer />
     </div>
   );
 };
