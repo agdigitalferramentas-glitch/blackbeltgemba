@@ -98,7 +98,7 @@ const HeroSection = () => {
 
             <ul className="space-y-2 sm:space-y-2.5 max-w-[52ch] mx-auto lg:mx-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
               {[
-                "100% gratuito",
+                
                 "Framework de linguagem financeira",
                 "Business Case completo e pronto para usar",
                 "Cases reais de profissionais que chegaram lá",
