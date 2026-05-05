@@ -71,14 +71,20 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           {/* Left: Headline */}
           <div className="flex-1 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-navy-light/50 backdrop-blur-sm px-4 py-1.5 mb-5 sm:mb-6 animate-fade-in-up">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold" />
+              </span>
+              <span className="text-gold-light text-xs sm:text-sm font-semibold tracking-wide">
+                Material gratuito e exclusivo
+              </span>
+            </div>
             <img
               src={blackBeltLogo}
               alt="Black Belt"
               className="h-16 sm:h-20 md:h-24 mb-5 sm:mb-7 mx-auto lg:mx-0 animate-fade-in-up"
             />
-            <p className="text-gold font-semibold text-xs sm:text-sm md:text-base uppercase tracking-widest mb-4 sm:mb-6 animate-fade-in-up">
-              Guia Gratuito — Black Belt
-            </p>
 
             <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-hero-foreground leading-tight mb-5 sm:mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               O guia para profissionais sêniores que querem sair do operacional e chegar a{" "}
