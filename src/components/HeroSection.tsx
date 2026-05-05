@@ -1,31 +1,41 @@
-import { useEffect, useRef } from "react";
+import { useState, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
+const AGSELL_SUBMIT_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}/submit`;
 
 const HeroSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || container.querySelector("iframe")) return;
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
 
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
-    iframe.style.cssText =
-      "width:100%;border:none;border-radius:12px;min-height:420px;background:transparent;transition:height 0.3s ease;";
-    iframe.setAttribute("allowtransparency", "true");
-    iframe.title = "Baixe o guia gratuito";
-    container.appendChild(iframe);
+    try {
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("email", email.trim());
+      formData.append("phone", phone.trim());
+      formData.append("whatsapp", phone.trim());
+      formData.append("formId", AGSELL_FORM_ID);
 
-    const onMessage = (e: MessageEvent) => {
-      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID) {
-        iframe.style.height = e.data.height + "px";
-      }
-    };
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, []);
+      // Best-effort submission to AgSell (no-cors so we don't block on response)
+      await fetch(AGSELL_SUBMIT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      }).catch(() => {});
+    } finally {
+      navigate("/bb-obrigado");
+    }
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -62,12 +72,52 @@ const HeroSection = () => {
           </div>
 
           {/* Right: Form */}
-          <div className="w-full lg:w-[600px] flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <div className="bg-navy-light/60 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-gold/20">
-              <h2 className="text-center text-hero-foreground font-display text-xl sm:text-2xl font-bold mb-4">
+          <div className="w-full lg:w-[460px] flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+            <div className="bg-navy-light/50 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold/15 shadow-2xl">
+              <h2 className="text-center text-hero-foreground font-display text-xl sm:text-2xl font-bold mb-6">
                 Baixe o guia gratuito
               </h2>
-              <div ref={containerRef} id={`agsell-form-${AGSELL_FORM_ID}`} />
+
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <input
+                  type="text"
+                  required
+                  maxLength={100}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Seu nome"
+                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
+                />
+                <input
+                  type="email"
+                  required
+                  maxLength={255}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Seu melhor e-mail"
+                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
+                />
+                <input
+                  type="tel"
+                  required
+                  maxLength={20}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value.replace(/[^\d\s()+-]/g, ""))}
+                  placeholder="DDD + WhatsApp"
+                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
+                />
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="mt-2 relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full font-bold text-sm sm:text-base uppercase tracking-wide text-white bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  <span>{submitting ? "ENVIANDO..." : "QUERO BAIXAR O GUIA GRATUITO"}</span>
+                  <span className="absolute right-2 top-1/2 -translate-y-1/2 bg-navy text-white rounded-full w-9 h-9 flex items-center justify-center">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
