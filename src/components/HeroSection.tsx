@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const HeroSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ name, email, phone });
-  };
+const HeroSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || container.querySelector("iframe")) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
+    iframe.style.cssText =
+      "width:100%;border:none;border-radius:12px;min-height:420px;background:transparent;transition:height 0.3s ease;";
+    iframe.setAttribute("allowtransparency", "true");
+    iframe.title = "Baixe o guia gratuito";
+    container.appendChild(iframe);
+
+    const onMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID) {
+        iframe.style.height = e.data.height + "px";
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
