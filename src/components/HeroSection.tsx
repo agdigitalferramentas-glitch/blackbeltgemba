@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const HeroSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ name, email, phone });
-  };
+const HeroSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || container.querySelector("iframe")) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
+    iframe.style.cssText =
+      "width:100%;border:none;border-radius:12px;min-height:420px;background:transparent;transition:height 0.3s ease;";
+    iframe.setAttribute("allowtransparency", "true");
+    iframe.title = "Baixe o guia gratuito";
+    container.appendChild(iframe);
+
+    const onMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID) {
+        iframe.style.height = e.data.height + "px";
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -46,38 +62,13 @@ const HeroSection = () => {
           </div>
 
           {/* Right: Form */}
-          <div className="w-full lg:w-[420px] flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <form onSubmit={handleSubmit}>
-              <div className="bg-navy-light/60 backdrop-blur-md rounded-xl p-5 sm:p-6 border border-gold/20 space-y-3 sm:space-y-4">
-                <input
-                  type="text"
-                  placeholder="Seu nome"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-navy-medium/80 border border-hero-foreground/10 text-hero-foreground placeholder:text-hero-foreground/40 focus:outline-none focus:border-gold/50 transition-colors text-sm sm:text-base"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Seu melhor e-mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-navy-medium/80 border border-hero-foreground/10 text-hero-foreground placeholder:text-hero-foreground/40 focus:outline-none focus:border-gold/50 transition-colors text-sm sm:text-base"
-                  required
-                />
-                <input
-                  type="tel"
-                  placeholder="Seu telefone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-navy-medium/80 border border-hero-foreground/10 text-hero-foreground placeholder:text-hero-foreground/40 focus:outline-none focus:border-gold/50 transition-colors text-sm sm:text-base"
-                  required
-                />
-                <button type="submit" className="w-full btn-gold text-sm sm:text-base md:text-lg font-bold py-3 sm:py-4 rounded-lg">
-                  Quero o guia gratuito agora
-                </button>
-              </div>
-            </form>
+          <div className="w-full lg:w-[600px] flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+            <div className="bg-navy-light/60 backdrop-blur-md rounded-2xl p-5 sm:p-6 border border-gold/20">
+              <h2 className="text-center text-hero-foreground font-display text-xl sm:text-2xl font-bold mb-4">
+                Baixe o guia gratuito
+              </h2>
+              <div ref={containerRef} id={`agsell-form-${AGSELL_FORM_ID}`} />
+            </div>
           </div>
         </div>
       </div>
