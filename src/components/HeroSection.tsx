@@ -83,22 +83,32 @@ const HeroSection = () => {
             <img
               src={blackBeltLogo}
               alt="Black Belt"
-              className="h-16 sm:h-20 md:h-24 mb-5 sm:mb-7 mx-auto lg:mx-0 animate-fade-in-up"
+              className="h-12 sm:h-14 md:h-[4.5rem] mb-5 sm:mb-7 mx-auto lg:mx-0 animate-fade-in-up"
             />
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-hero-foreground leading-tight mb-5 sm:mb-8 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              O guia para profissionais sêniores que querem sair do operacional e chegar a{" "}
-              <span className="gold-text">cargos estratégicos</span>{" "}
-              sem se preocupar com a politicagem.
+            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] tracking-tight mb-5 sm:mb-8 max-w-[28ch] mx-auto lg:mx-0 animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
+              O guia para profissionais sêniores que saem do operacional e chegam a{" "}
+              <span className="gold-text whitespace-nowrap">cargos estratégicos</span>{" "}
+              sem depender de politicagem.
             </h1>
 
-            <p className="text-hero-foreground/80 text-base sm:text-lg md:text-xl leading-relaxed mb-4 sm:mb-6 animate-fade-in-up hidden sm:block" style={{ animationDelay: "0.2s" }}>
-              Você já tem experiência. Já resolve os problemas difíceis. Já é respeitado pela equipe. O que este material te ensina é como transformar tudo isso em linguagem que a diretoria entende, em propostas que passam em qualquer aprovação e em um posicionamento que coloca o seu nome nas decisões de outro nível.
+            <p className="text-hero-foreground/80 text-sm sm:text-base md:text-lg leading-relaxed mb-5 sm:mb-7 max-w-[52ch] mx-auto lg:mx-0 animate-fade-in-up hidden sm:block" style={{ animationDelay: "0.2s" }}>
+              Você já tem experiência, resolve problemas difíceis e é respeitado pela equipe. Aqui você aprende a traduzir isso na linguagem que a diretoria entende e a se posicionar nas decisões de outro nível.
             </p>
 
-            <p className="text-gold-light/70 text-xs sm:text-sm md:text-base mb-4 lg:mb-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              Gratuito. Com framework de linguagem financeira, Business Case completo e cases reais de profissionais que chegaram a cargos estratégicos usando este método.
-            </p>
+            <ul className="space-y-2 sm:space-y-2.5 max-w-[52ch] mx-auto lg:mx-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+              {[
+                "100% gratuito",
+                "Framework de linguagem financeira",
+                "Business Case completo e pronto para usar",
+                "Cases reais de profissionais que chegaram lá",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-gold-light/90 text-xs sm:text-sm md:text-base text-left">
+                  <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right: Native form */}
