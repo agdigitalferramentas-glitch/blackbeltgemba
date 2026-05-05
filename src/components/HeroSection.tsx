@@ -88,9 +88,17 @@ const HeroSection = () => {
                 Baixe o guia gratuito
               </h2>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form
+                onSubmit={handleSubmit}
+                action={AGSELL_FORM_URL}
+                method="POST"
+                target={HIDDEN_IFRAME_NAME}
+                className="flex flex-col gap-3"
+              >
+                <input type="hidden" name="formId" value={AGSELL_FORM_ID} />
                 <input
                   type="text"
+                  name="name"
                   required
                   maxLength={100}
                   value={name}
@@ -100,6 +108,7 @@ const HeroSection = () => {
                 />
                 <input
                   type="email"
+                  name="email"
                   required
                   maxLength={255}
                   value={email}
@@ -109,6 +118,7 @@ const HeroSection = () => {
                 />
                 <input
                   type="tel"
+                  name="phone"
                   required
                   maxLength={20}
                   value={phone}
@@ -116,6 +126,7 @@ const HeroSection = () => {
                   placeholder="DDD + WhatsApp"
                   className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
                 />
+                <input type="hidden" name="whatsapp" value={phone} />
 
                 <button
                   type="submit"
@@ -128,6 +139,15 @@ const HeroSection = () => {
                   </span>
                 </button>
               </form>
+
+              <iframe
+                ref={iframeRef}
+                name={HIDDEN_IFRAME_NAME}
+                title="agsell-submit-target"
+                aria-hidden="true"
+                tabIndex={-1}
+                className="hidden"
+              />
             </div>
           </div>
         </div>
