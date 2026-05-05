@@ -1,51 +1,59 @@
-import { useState, useRef, useEffect, FormEvent } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
 const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
-const HIDDEN_IFRAME_NAME = "agsell-submit-target";
 
 const HeroSection = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const submittedRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Listen for AgSell postMessage events (success / submitted)
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Avoid duplicate iframes (StrictMode / re-renders)
+    container.innerHTML = "";
+
+    const iframe = document.createElement("iframe");
+    iframe.src = AGSELL_FORM_URL;
+    iframe.style.cssText =
+      "width:100%;border:none;border-radius:8px;background:transparent;display:block;min-height:520px;";
+    iframe.setAttribute("allowtransparency", "true");
+    iframe.title = "Baixe o guia gratuito";
+    container.appendChild(iframe);
+
     const onMessage = (e: MessageEvent) => {
       if (!e.data) return;
       const data = typeof e.data === "string" ? { type: e.data } : e.data;
       const type = String(data.type || data.event || "").toLowerCase();
+
       if (
-        submittedRef.current &&
-        (type.includes("submit") || type.includes("success") || type.includes("sent"))
+        data.type === "agsell-form-height" &&
+        data.formId === AGSELL_FORM_ID &&
+        typeof data.height === "number"
+      ) {
+        iframe.style.height = `${data.height}px`;
+        return;
+      }
+
+      if (
+        type.includes("submit") ||
+        type.includes("success") ||
+        type.includes("sent") ||
+        type.includes("complete")
       ) {
         navigate("/bb-obrigado");
       }
     };
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-  }, [navigate]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    if (submitting) {
-      e.preventDefault();
-      return;
-    }
-    submittedRef.current = true;
-    setSubmitting(true);
-    // Allow native submission to the hidden iframe targeting AgSell.
-    // Fallback redirect in case no postMessage is received.
-    window.setTimeout(() => {
-      navigate("/bb-obrigado");
-    }, 1500);
-  };
+    window.addEventListener("message", onMessage);
+    return () => {
+      window.removeEventListener("message", onMessage);
+      container.innerHTML = "";
+    };
+  }, [navigate]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -81,72 +89,12 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Right: Form */}
+          {/* Right: Form (AgSell iframe) */}
           <div className="w-full lg:w-[460px] flex-shrink-0 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <div className="bg-navy-light/50 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-gold/15 shadow-2xl">
-              <h2 className="text-center text-hero-foreground font-display text-xl sm:text-2xl font-bold mb-6">
-                Baixe o guia gratuito
-              </h2>
-
-              <form
-                onSubmit={handleSubmit}
-                action={AGSELL_FORM_URL}
-                method="POST"
-                target={HIDDEN_IFRAME_NAME}
-                className="flex flex-col gap-3"
-              >
-                <input type="hidden" name="formId" value={AGSELL_FORM_ID} />
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  maxLength={100}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Seu nome"
-                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  maxLength={255}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Seu melhor e-mail"
-                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  maxLength={20}
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/[^\d\s()+-]/g, ""))}
-                  placeholder="DDD + WhatsApp"
-                  className="w-full px-5 py-3.5 rounded-full bg-transparent border border-hero-foreground/20 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 transition-colors"
-                />
-                <input type="hidden" name="whatsapp" value={phone} />
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="mt-2 relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-full font-bold text-sm sm:text-base uppercase tracking-wide text-white bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
-                >
-                  <span>{submitting ? "ENVIANDO..." : "QUERO BAIXAR O GUIA GRATUITO"}</span>
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 bg-navy text-white rounded-full w-9 h-9 flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </button>
-              </form>
-
-              <iframe
-                ref={iframeRef}
-                name={HIDDEN_IFRAME_NAME}
-                title="agsell-submit-target"
-                aria-hidden="true"
-                tabIndex={-1}
-                className="hidden"
+            <div className="bg-navy-light/50 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-gold/15 shadow-2xl">
+              <div
+                ref={containerRef}
+                id={`agsell-form-${AGSELL_FORM_ID}`}
               />
             </div>
           </div>
