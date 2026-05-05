@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 import heroBg from "@/assets/hero-bg.jpg";
+import blackBeltLogo from "@/assets/logotipo-blackbelt.svg";
 
 const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
 const AGSELL_SUPABASE_URL = "https://gmemxbfibakfpsjbsvyt.supabase.co";
@@ -70,6 +71,11 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           {/* Left: Headline */}
           <div className="flex-1 text-center lg:text-left">
+            <img
+              src={blackBeltLogo}
+              alt="Black Belt"
+              className="h-16 sm:h-20 md:h-24 mb-5 sm:mb-7 mx-auto lg:mx-0 animate-fade-in-up"
+            />
             <p className="text-gold font-semibold text-xs sm:text-sm md:text-base uppercase tracking-widest mb-4 sm:mb-6 animate-fade-in-up">
               Guia Gratuito — Black Belt
             </p>

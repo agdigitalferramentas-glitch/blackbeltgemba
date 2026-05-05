@@ -15,35 +15,35 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 30% 12%;
 
-    --primary: 42 78% 55%;
-    --primary-foreground: 220 40% 8%;
+    --primary: 0 0% 83%;
+    --primary-foreground: 215 67% 11%;
 
-    --secondary: 220 25% 14%;
-    --secondary-foreground: 42 78% 55%;
+    --secondary: 215 67% 11%;
+    --secondary-foreground: 210 3% 91%;
 
     --muted: 220 20% 92%;
     --muted-foreground: 220 15% 46%;
 
-    --accent: 42 78% 55%;
-    --accent-foreground: 220 40% 8%;
+    --accent: 0 0% 83%;
+    --accent-foreground: 215 67% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 220 20% 88%;
     --input: 220 20% 88%;
-    --ring: 42 78% 55%;
+    --ring: 0 0% 75%;
 
     --radius: 0.5rem;
 
-    --hero-bg: 220 40% 8%;
-    --hero-foreground: 210 30% 95%;
-    --gold: 42 78% 55%;
-    --gold-light: 42 60% 72%;
-    --gold-dark: 42 85% 42%;
-    --navy: 220 40% 8%;
-    --navy-light: 220 30% 18%;
-    --navy-medium: 220 35% 12%;
+    --hero-bg: 215 67% 11%;
+    --hero-foreground: 210 3% 95%;
+    --gold: 0 0% 83%;
+    --gold-light: 210 3% 91%;
+    --gold-dark: 0 0% 75%;
+    --navy: 215 67% 11%;
+    --navy-light: 215 60% 18%;
+    --navy-medium: 215 65% 14%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -93,13 +93,13 @@
 
   .btn-gold {
     @apply font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300 cursor-pointer;
-    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold)));
+    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold-light)));
     color: hsl(var(--navy));
-    box-shadow: 0 4px 20px hsl(var(--gold) / 0.3);
+    box-shadow: 0 4px 20px hsl(var(--gold) / 0.35);
   }
 
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px hsl(var(--gold) / 0.5);
+    box-shadow: 0 8px 30px hsl(var(--gold) / 0.55);
   }
 }
