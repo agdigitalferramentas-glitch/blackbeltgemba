@@ -1,10 +1,11 @@
-import { useState, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
-const AGSELL_SUBMIT_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}/submit`;
+const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
+const HIDDEN_IFRAME_NAME = "agsell-submit-target";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -12,29 +13,38 @@ const HeroSection = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const submittedRef = useRef(false);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (submitting) return;
-    setSubmitting(true);
+  useEffect(() => {
+    // Listen for AgSell postMessage events (success / submitted)
+    const onMessage = (e: MessageEvent) => {
+      if (!e.data) return;
+      const data = typeof e.data === "string" ? { type: e.data } : e.data;
+      const type = String(data.type || data.event || "").toLowerCase();
+      if (
+        submittedRef.current &&
+        (type.includes("submit") || type.includes("success") || type.includes("sent"))
+      ) {
+        navigate("/bb-obrigado");
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [navigate]);
 
-    try {
-      const formData = new FormData();
-      formData.append("name", name.trim());
-      formData.append("email", email.trim());
-      formData.append("phone", phone.trim());
-      formData.append("whatsapp", phone.trim());
-      formData.append("formId", AGSELL_FORM_ID);
-
-      // Best-effort submission to AgSell (no-cors so we don't block on response)
-      await fetch(AGSELL_SUBMIT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData,
-      }).catch(() => {});
-    } finally {
-      navigate("/bb-obrigado");
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault();
+      return;
     }
+    submittedRef.current = true;
+    setSubmitting(true);
+    // Allow native submission to the hidden iframe targeting AgSell.
+    // Fallback redirect in case no postMessage is received.
+    window.setTimeout(() => {
+      navigate("/bb-obrigado");
+    }, 1500);
   };
 
   return (
