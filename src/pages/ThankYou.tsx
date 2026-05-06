@@ -21,8 +21,8 @@ const ThankYou = () => {
             <span className="text-sm font-medium text-[hsl(var(--gold))]">Inscrição confirmada</span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-3xl mb-6">
-            O seu guia está aqui.
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-3xl mb-6 [text-wrap:balance]">
+            O seu guia está&nbsp;aqui.
           </h1>
 
           <p className="text-base md:text-lg text-[hsl(var(--hero-foreground)/0.75)] max-w-2xl mb-10 leading-relaxed">
