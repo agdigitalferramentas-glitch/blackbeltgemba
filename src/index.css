@@ -120,17 +120,10 @@
   }
 
   .section-divider {
-    height: 1px;
-    width: min(calc(100% - 2rem), 1120px);
+    height: 24px;
+    width: 100%;
     margin: 0 auto;
     border: 0 !important;
-    background-image: linear-gradient(
-      90deg,
-      hsl(var(--gold) / 0) 0%,
-      hsl(var(--gold) / 0.12) 18%,
-      hsl(var(--gold) / 0.72) 50%,
-      hsl(var(--gold) / 0.12) 82%,
-      hsl(var(--gold) / 0) 100%
-    );
+    background: radial-gradient(ellipse at center, hsl(var(--gold) / 0.18) 0%, hsl(var(--gold) / 0.06) 34%, hsl(var(--gold) / 0) 72%);
   }
 }
