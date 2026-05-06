@@ -70,7 +70,7 @@ const HeroSection = () => {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           {/* Left: Headline */}
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 text-left">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-navy-light/50 backdrop-blur-sm px-4 py-1.5 mb-5 sm:mb-6 animate-fade-in-up">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 animate-ping" />
@@ -83,20 +83,20 @@ const HeroSection = () => {
             <img
               src={blackBeltLogo}
               alt="Black Belt"
-              className="h-12 sm:h-14 md:h-[4.5rem] mb-5 sm:mb-7 mx-auto lg:mx-0 animate-fade-in-up"
+              className="h-12 sm:h-14 md:h-[4.5rem] mb-5 sm:mb-7 animate-fade-in-up"
             />
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] tracking-tight mb-5 sm:mb-8 max-w-[28ch] mx-auto lg:mx-0 animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
+            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
               O guia para profissionais sêniores que saem do operacional e chegam a{" "}
               <span className="gold-text whitespace-nowrap">cargos estratégicos</span>{" "}
               sem depender de politicagem.
             </h1>
 
-            <p className="text-hero-foreground/80 text-sm sm:text-base md:text-lg leading-relaxed mb-5 sm:mb-7 max-w-[52ch] mx-auto lg:mx-0 animate-fade-in-up hidden sm:block" style={{ animationDelay: "0.2s" }}>
+            <p className="text-hero-foreground/80 text-sm sm:text-base md:text-lg leading-relaxed mb-5 sm:mb-7 max-w-[52ch] animate-fade-in-up hidden sm:block" style={{ animationDelay: "0.2s" }}>
               Você já tem experiência, resolve problemas difíceis e é respeitado pela equipe. Aqui você aprende a traduzir isso na linguagem que a diretoria entende e a se posicionar nas decisões de outro nível.
             </p>
 
-            <ul className="space-y-2 sm:space-y-2.5 max-w-[52ch] mx-auto lg:mx-0 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            <ul className="space-y-2 sm:space-y-2.5 max-w-[52ch] animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
               {[
                 
                 "Framework de linguagem financeira",
