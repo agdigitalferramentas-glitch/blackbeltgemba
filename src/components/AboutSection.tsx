@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import gembaTeam from "@/assets/gemba-team.webp";
 
 const scrollToTop = () => {
@@ -34,8 +35,14 @@ const AboutSection = () => {
             </div>
 
             <div className="mt-8 sm:mt-10">
-              <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full">
-                Quero o guia gratuito agora
+              <button
+                onClick={scrollToTop}
+                className="btn-gold inline-flex items-center justify-center gap-3 rounded-full text-sm sm:text-base w-full"
+              >
+                QUERO BAIXAR O GUIA GRATUITO
+                <span className="bg-navy text-gold rounded-full p-1.5 flex items-center justify-center">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </button>
             </div>
           </div>
