@@ -32,11 +32,15 @@ const BulletsSection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-5">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-5 max-w-5xl mx-auto">
             {bullets.map((bullet, index) => (
               <div
                 key={index}
-                className="flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-navy-light/40 border border-gold/15 hover:border-gold/40 backdrop-blur-sm transition-colors duration-300"
+                className={`flex gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl bg-navy-light/40 border border-gold/15 hover:border-gold/40 backdrop-blur-sm transition-colors duration-300 ${
+                  index === bullets.length - 1 && bullets.length % 2 !== 0
+                    ? "md:col-span-2 md:max-w-[calc(50%-0.625rem)] md:mx-auto md:w-full"
+                    : ""
+                }`}
               >
                 <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-gold flex-shrink-0 mt-0.5 sm:mt-1" />
                 <p className="text-hero-foreground/90 leading-relaxed text-sm sm:text-base">{bullet}</p>
