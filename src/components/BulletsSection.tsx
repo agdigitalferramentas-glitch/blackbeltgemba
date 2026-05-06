@@ -19,15 +19,15 @@ const BulletsSection = () => {
     <section className="py-14 sm:py-20 md:py-28 bg-navy text-hero-foreground">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-hero-foreground text-center mb-4 sm:mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-hero-foreground text-left sm:text-center mb-4 sm:mb-6">
             Veja tudo o que você vai receber neste guia
           </h2>
 
           <div className="max-w-3xl mx-auto mb-10 sm:mb-14">
-            <p className="text-hero-foreground/70 text-base sm:text-lg text-center leading-relaxed mb-3 sm:mb-4">
+            <p className="text-hero-foreground/70 text-base sm:text-lg text-left sm:text-center leading-relaxed mb-3 sm:mb-4">
               Quem aprende a traduzir indicadores operacionais em impacto financeiro para a diretoria muda de nível — sem depender de política.
             </p>
-            <p className="text-hero-foreground/70 text-base sm:text-lg text-center leading-relaxed">
+            <p className="text-hero-foreground/70 text-base sm:text-lg text-left sm:text-center leading-relaxed">
               Não é mais um conteúdo sobre liderança e soft skills. É um método com frameworks, modelos prontos e cases reais de profissionais que usaram dados no lugar de política para chegar onde queriam.
             </p>
           </div>
