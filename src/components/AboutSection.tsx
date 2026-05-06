@@ -12,7 +12,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-14 items-center">
           <div className="lg:w-1/2">
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground text-left mb-6 sm:mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-foreground text-left mb-6 sm:mb-8 text-balance max-w-md">
               Quem está por trás deste material
             </h2>
             <div className="space-y-4 sm:space-y-6 text-secondary-foreground/70 text-sm sm:text-base lg:text-lg leading-relaxed">
