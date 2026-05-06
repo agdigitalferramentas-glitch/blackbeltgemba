@@ -17,6 +17,7 @@ const Index = () => {
       <AuthoritySection />
       <div className="section-divider" />
       <AboutSection />
+      <div className="section-divider" />
       <Footer />
     </main>
   );
