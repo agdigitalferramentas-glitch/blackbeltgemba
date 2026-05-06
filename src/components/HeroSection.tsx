@@ -66,6 +66,7 @@ const HeroSection = () => {
         height={1080}
       />
       <div className="absolute inset-0 bg-navy/85" />
+      <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-b from-navy/0 to-navy pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-10 sm:py-16 md:py-24">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
