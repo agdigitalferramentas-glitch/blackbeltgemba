@@ -33,7 +33,7 @@ const ThankYou = () => {
             href="https://drive.google.com/file/d/1BzCB4ospDKI7A91ZPadnd_VOx3g_IL01/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold inline-flex items-center gap-3 text-base md:text-lg"
+            className="btn-gold inline-flex items-center gap-3 rounded-full text-base md:text-lg"
           >
             ACESSAR O GUIA AGORA
             <span className="bg-[hsl(var(--navy))] text-[hsl(var(--gold))] rounded-full p-1.5">
@@ -43,6 +43,7 @@ const ThankYou = () => {
         </div>
       </section>
 
+      <div className="section-divider" />
       <Footer />
     </div>
   );
