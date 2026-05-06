@@ -17,7 +17,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-secondary-foreground/40 text-sm">
             © {new Date().getFullYear()} Gemba Group. Todos os direitos reservados.
           </p>
