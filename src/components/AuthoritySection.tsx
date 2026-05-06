@@ -23,13 +23,11 @@ const AuthoritySection = () => {
             <span className="gold-text">30 mil profissionais</span>
           </h2>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-10 sm:mb-14">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-10 sm:mb-14">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className={`p-4 sm:p-6 rounded-xl border border-hero-foreground/10 bg-navy-light/40 backdrop-blur-sm ${
-                  index === stats.length - 1 ? "col-span-2 lg:col-span-1" : ""
-                }`}
+                className="p-4 sm:p-6 rounded-xl border border-hero-foreground/10 bg-navy-light/40 backdrop-blur-sm w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)]"
               >
                 <p className="text-2xl sm:text-4xl md:text-5xl font-bold gold-text mb-2 sm:mb-3 font-display">{stat.value}</p>
                 <p className="text-hero-foreground/70 text-xs sm:text-sm md:text-base">{stat.label}</p>
