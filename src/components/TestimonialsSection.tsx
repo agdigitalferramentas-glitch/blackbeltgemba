@@ -1,50 +1,59 @@
-const testimonials = [
-  {
-    quote: "Em 6 meses saí de analista sênior para gerente de operações. O método mudou a forma como eu apresento resultados.",
-    name: "Ricardo M.",
-    role: "Gerente de Operações — Indústria Automotiva",
-  },
-  {
-    quote: "Parei de competir por visibilidade e comecei a mostrar impacto financeiro. Em 1 ano, fui promovida a diretora.",
-    name: "Camila S.",
-    role: "Diretora de Qualidade — Farmacêutica",
-  },
-  {
-    quote: "Meu Business Case foi aprovado de primeira. R$ 2,3 milhões em saving no primeiro projeto como coordenador.",
-    name: "Felipe T.",
-    role: "Coordenador de Melhoria Contínua — Alimentos",
-  },
-  {
-    quote: "Eu achava que precisava de MBA para subir. Na verdade, precisava falar a língua do CFO. Este guia ensina exatamente isso.",
-    name: "Juliana R.",
-    role: "Head de Processos — Logística",
-  },
+import { useState } from "react";
+import { Play } from "lucide-react";
+
+const videos = [
+  "nkxiOrYzKps",
+  "wJQeUW8ZQQA",
+  "cnA_jrJDcRU",
+  "YhS3Fz6iEYk",
+  "mCfsnekzJ0o",
+  "VRcPrcZigHM",
 ];
 
 const TestimonialsSection = () => {
+  const [playing, setPlaying] = useState<string | null>(null);
+
   return (
-    <section className="py-14 sm:py-20 md:py-28 bg-secondary">
+    <section className="py-14 sm:py-20 md:py-28 bg-navy text-hero-foreground">
       <div className="container mx-auto px-4 sm:px-6">
-        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-secondary-foreground text-center mb-3 sm:mb-4">
-          Quem aplicou, <span className="gold-text">chegou lá</span>
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-hero-foreground text-center mb-3 sm:mb-4">
+          O que dizem quem já <span className="gold-text">passou pelo método</span>
         </h2>
-        <p className="text-secondary-foreground/60 text-sm sm:text-base text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          Veja o que dizem profissionais que usaram dados — não política — para alcançar cargos estratégicos.
+        <p className="text-hero-foreground/70 text-sm sm:text-base text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+          Depoimentos reais de profissionais que aplicaram o método Gemba e transformaram suas carreiras.
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
-          {testimonials.map((t, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
+          {videos.map((id) => (
             <div
-              key={i}
-              className="bg-navy-medium/40 border border-gold/10 rounded-xl p-5 sm:p-6 flex flex-col justify-between"
+              key={id}
+              className="relative aspect-video rounded-xl overflow-hidden border border-gold/15 bg-navy-light/40 group cursor-pointer"
+              onClick={() => setPlaying(id)}
             >
-              <p className="text-secondary-foreground/90 text-sm sm:text-base md:text-lg leading-relaxed italic mb-4 sm:mb-6">
-                "{t.quote}"
-              </p>
-              <div>
-                <p className="text-gold font-semibold text-xs sm:text-sm">{t.name}</p>
-                <p className="text-secondary-foreground/50 text-[11px] sm:text-xs">{t.role}</p>
-              </div>
+              {playing === id ? (
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+                  title="Depoimento"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <img
+                    src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+                    alt="Depoimento em vídeo"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-navy/30 group-hover:bg-navy/10 transition-colors" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="gold-gradient w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                      <Play className="w-6 h-6 sm:w-7 sm:h-7 text-navy fill-navy ml-1" />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
