@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+
 const stats = [
   { value: "+30 mil", label: "profissionais capacitados em todo o Brasil" },
   { value: "+R$ 1 bi", label: "em ganhos gerados para os clientes" },
@@ -39,8 +41,14 @@ const AuthoritySection = () => {
             Os profissionais dos cases que estão neste guia usaram exatamente este método. Os números são reais. As promoções aconteceram.
           </p>
 
-          <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full sm:w-auto">
-            Quero o guia gratuito agora
+          <button
+            onClick={scrollToTop}
+            className="btn-gold inline-flex items-center justify-center gap-3 rounded-full text-sm sm:text-base w-full sm:w-auto"
+          >
+            QUERO BAIXAR O GUIA GRATUITO
+            <span className="bg-navy text-gold rounded-full p-1.5 flex items-center justify-center">
+              <ArrowRight className="w-4 h-4" />
+            </span>
           </button>
         </div>
       </div>
