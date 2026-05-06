@@ -50,7 +50,7 @@ const AboutSection = () => {
             <img
               src={gembaTeam}
               alt="Equipe Gemba Group"
-              className="w-full aspect-[4/3] sm:aspect-square object-cover rounded-2xl shadow-2xl"
+              className="w-full h-auto sm:aspect-square sm:object-cover rounded-2xl shadow-2xl"
             />
           </div>
         </div>
