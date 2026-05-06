@@ -121,10 +121,16 @@
 
   .section-divider {
     height: 1px;
-    width: 100%;
+    width: min(calc(100% - 2rem), 1120px);
+    margin: 0 auto;
     border: 0 !important;
-    background-color: hsl(var(--gold) / 0.72);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 12%, black 50%, transparent 88%, transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0%, transparent 12%, black 50%, transparent 88%, transparent 100%);
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--gold) / 0) 0%,
+      hsl(var(--gold) / 0.12) 18%,
+      hsl(var(--gold) / 0.72) 50%,
+      hsl(var(--gold) / 0.12) 82%,
+      hsl(var(--gold) / 0) 100%
+    );
   }
 }
