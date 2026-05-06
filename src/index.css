@@ -118,4 +118,14 @@
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
   }
+
+  .section-divider {
+    @apply h-px w-full border-0;
+    background-image: linear-gradient(
+      to right,
+      transparent 0%,
+      hsl(var(--gold) / 0.45) 50%,
+      transparent 100%
+    );
+  }
 }
