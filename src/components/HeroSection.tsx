@@ -87,7 +87,7 @@ const HeroSection = () => {
               className="h-12 sm:h-14 md:h-[4.5rem] mb-5 sm:mb-7 animate-fade-in-up"
             />
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
+            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] md:leading-[1.3] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
               O guia para profissionais sêniores que saem do operacional e chegam a{" "}
               <span className="gold-text whitespace-nowrap">cargos estratégicos</span>{" "}
               sem depender de politicagem.
