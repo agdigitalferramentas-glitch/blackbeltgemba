@@ -120,13 +120,27 @@
   }
 
   .section-divider {
-    height: 1px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    background: transparent;
+    border: 0;
+  }
+
+  .section-divider::before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: min(100%, 1120px);
     border: 0;
     background: linear-gradient(
       90deg,
       hsl(var(--gold) / 0) 0%,
+      hsl(var(--gold) / 0) 8%,
       hsl(var(--gold) / 0.7) 50%,
+      hsl(var(--gold) / 0) 92%,
       hsl(var(--gold) / 0) 100%
     );
   }
