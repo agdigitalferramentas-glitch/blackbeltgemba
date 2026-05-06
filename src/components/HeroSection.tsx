@@ -87,24 +87,32 @@ const HeroSection = () => {
               className="h-12 sm:h-14 md:h-[4.5rem] mb-5 sm:mb-7 animate-fade-in-up"
             />
 
-            <h1 className="font-display text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] md:leading-[1.3] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance" style={{ animationDelay: "0.1s" }}>
+            <h1
+              className="font-display text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] md:leading-[1.3] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance"
+              style={{ animationDelay: "0.1s" }}
+            >
               O guia para profissionais sêniores que saem do operacional e chegam a{" "}
-              <span className="gold-text whitespace-nowrap">cargos estratégicos</span>{" "}
-              sem depender de politicagem.
+              <span className="gold-text whitespace-nowrap">cargos estratégicos</span> sem depender de politicagem.
             </h1>
 
-            <p className="text-hero-foreground/80 text-sm sm:text-base md:text-lg leading-relaxed mb-5 sm:mb-7 max-w-[52ch] animate-fade-in-up hidden sm:block" style={{ animationDelay: "0.2s" }}>
-              Você já tem experiência, resolve problemas difíceis e é respeitado pela equipe. Aqui você aprende a traduzir isso na linguagem que a diretoria entende e a se posicionar nas decisões de outro nível.
+            <p
+              className="text-hero-foreground/80 text-sm sm:text-base md:text-lg leading-relaxed mb-5 sm:mb-7 max-w-[52ch] animate-fade-in-up hidden sm:block"
+              style={{ animationDelay: "0.2s" }}
+            >
+              Você já tem experiência, resolve problemas difíceis e é respeitado pela equipe. Aqui você aprende a
+              traduzir isso na linguagem que a diretoria entende e a se posicionar nas decisões de outro nível.
             </p>
 
             <ul className="space-y-2 sm:space-y-2.5 max-w-[52ch] animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
               {[
-                
                 "Framework de linguagem financeira",
                 "Business Case completo e pronto para usar",
                 "Cases reais de profissionais que chegaram lá",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-gold-light/90 text-xs sm:text-sm md:text-base text-left">
+                <li
+                  key={item}
+                  className="flex items-start gap-2.5 text-gold-light/90 text-xs sm:text-sm md:text-base text-left"
+                >
                   <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-gold flex-shrink-0" />
                   <span>{item}</span>
                 </li>
