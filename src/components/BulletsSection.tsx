@@ -1,4 +1,4 @@
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 
 const bullets = [
   "O framework completo das 5 traduções que mudam como a diretoria te enxerga: como transformar taxa de defeito em custo da má qualidade, lead time em custo de oportunidade, ociosidade em capital parado, retrabalho em headcount oculto e risco operacional em exposição financeira. Com exemplos reais de antes e depois para cada uma",
@@ -45,8 +45,14 @@ const BulletsSection = () => {
           </div>
 
           <div className="text-center mt-10 sm:mt-14">
-            <button onClick={scrollToTop} className="btn-gold text-sm sm:text-base md:text-lg font-bold w-full sm:w-auto">
-              Quero o guia gratuito agora
+            <button
+              onClick={scrollToTop}
+              className="btn-gold inline-flex items-center justify-center gap-3 rounded-full text-sm sm:text-base w-full sm:w-auto"
+            >
+              QUERO BAIXAR O GUIA GRATUITO
+              <span className="bg-navy text-gold rounded-full p-1.5 flex items-center justify-center">
+                <ArrowRight className="w-4 h-4" />
+              </span>
             </button>
           </div>
         </div>
