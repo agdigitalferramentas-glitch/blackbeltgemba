@@ -88,7 +88,7 @@ const HeroSection = () => {
             />
 
             <h1
-              className="font-display text-2xl sm:text-3xl md:text-[1.8rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] md:leading-[1.3] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance"
+              className="font-display text-2xl sm:text-3xl md:text-[1.8rem] lg:text-[2.5rem] font-bold text-hero-foreground leading-[1.15] md:leading-[1.2] tracking-tight mb-5 sm:mb-8 max-w-[28ch] animate-fade-in-up text-balance"
               style={{ animationDelay: "0.1s" }}
             >
               O guia para profissionais sêniores que saem do operacional e chegam a{" "}
