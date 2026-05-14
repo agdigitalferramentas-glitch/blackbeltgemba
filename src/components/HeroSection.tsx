@@ -6,45 +6,36 @@ import { toast } from "sonner";
 import heroBg from "@/assets/hero-bg.jpg";
 import blackBeltLogo from "@/assets/logotipo-blackbelt.svg";
 
-const AGSELL_FORM_ID = "1cc7a18d-1310-4a4b-b2ca-32141edb2cf9";
-const AGSELL_SUPABASE_URL = "https://gmemxbfibakfpsjbsvyt.supabase.co";
-const AGSELL_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdtZW14YmZpYmFrZnBzamJzdnl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAwNTMxOTQsImV4cCI6MjA4NTYyOTE5NH0.Aq7KveS7PwwAADPK-n0rz-CEYM0dTYZLnttTph1EfD0";
+const AGSELL_SUBMIT_URL = "https://rcxrkvwxlzwzrllwdwgz.supabase.co/functions/v1/public-api/forms/1cc7a18d-1310-4a4b-b2ca-32141edb2cf9/submit";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
   email: z.string().trim().email("E-mail inválido").max(255),
-  whatsapp: z.string().trim().min(8, "Informe seu WhatsApp").max(20),
+  phone: z.string().trim().min(8, "Informe seu WhatsApp").max(20),
 });
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ name, email, whatsapp });
+    const parsed = schema.safeParse({ name, email, phone });
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Dados inválidos");
       return;
     }
     setSubmitting(true);
     try {
-      const res = await fetch(`${AGSELL_SUPABASE_URL}/rest/v1/form_submissions`, {
+      const res = await fetch(AGSELL_SUBMIT_URL, {
         method: "POST",
         headers: {
-          apikey: AGSELL_ANON_KEY,
-          Authorization: `Bearer ${AGSELL_ANON_KEY}`,
           "Content-Type": "application/json",
-          Prefer: "return=minimal",
         },
-        body: JSON.stringify({
-          form_id: AGSELL_FORM_ID,
-          data: parsed.data,
-        }),
+        body: JSON.stringify(parsed.data),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       navigate("/bb-obrigado");
@@ -148,8 +139,8 @@ const HeroSection = () => {
                 <input
                   type="tel"
                   placeholder="DDD + WhatsApp"
-                  value={whatsapp}
-                  onChange={(e) => setWhatsapp(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   maxLength={20}
                   required
                   className="w-full rounded-full bg-transparent border border-hero-foreground/25 px-5 py-3 text-hero-foreground placeholder:text-hero-foreground/50 focus:outline-none focus:border-gold/60 focus:ring-2 focus:ring-gold/20 transition"
