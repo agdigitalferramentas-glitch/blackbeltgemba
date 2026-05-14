@@ -14,6 +14,28 @@ const schema = z.object({
   phone: z.string().trim().min(8, "Informe seu WhatsApp").max(20),
 });
 
+const submitToAgSell = async (payload: z.infer<typeof schema>) => {
+  let lastError = "";
+
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const res = await fetch(AGSELL_SUBMIT_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) return;
+
+    lastError = await res.text();
+    if (res.status < 500 || attempt === 2) {
+      throw new Error(`AG Sell HTTP ${res.status}: ${lastError}`);
+    }
+  }
+};
+
 const HeroSection = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -30,14 +52,7 @@ const HeroSection = () => {
     }
     setSubmitting(true);
     try {
-      const res = await fetch(AGSELL_SUBMIT_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(parsed.data),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      await submitToAgSell(parsed.data);
       navigate("/bb-obrigado");
     } catch (err) {
       console.error(err);
