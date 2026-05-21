@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import heroBg from "@/assets/hero-bg.jpg";
 import blackBeltLogo from "@/assets/logotipo-blackbelt.svg";
 
-const AGSELL_SUBMIT_URL = "https://rcxrkvwxlzwzrllwdwgz.supabase.co/functions/v1/public-api/forms/1cc7a18d-1310-4a4b-b2ca-32141edb2cf9/submit";
+const WEBHOOK_URL = "https://automacao.gembagroup.com.br/webhook/29448797-7eed-40a1-923a-70785ac16ab9";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
@@ -14,27 +14,6 @@ const schema = z.object({
   phone: z.string().trim().min(8, "Informe seu WhatsApp").max(20),
 });
 
-const submitToAgSell = async (payload: z.infer<typeof schema>) => {
-  let lastError = "";
-
-  for (let attempt = 1; attempt <= 2; attempt += 1) {
-    const res = await fetch(AGSELL_SUBMIT_URL, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (res.ok) return;
-
-    lastError = await res.text();
-    if (res.status < 500 || attempt === 2) {
-      throw new Error(`AG Sell HTTP ${res.status}: ${lastError}`);
-    }
-  }
-};
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -52,15 +31,27 @@ const HeroSection = () => {
     }
     setSubmitting(true);
     try {
-      await submitToAgSell(parsed.data);
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          programa_elite: "Black Belt",
+          nome: parsed.data.name,
+          telefone: parsed.data.phone,
+          email: parsed.data.email,
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      console.log("Webhook enviado com sucesso");
       navigate("/bb-obrigado");
     } catch (err) {
-      console.error(err);
+      console.error("Erro ao enviar webhook:", err);
       toast.error("Não foi possível enviar. Tente novamente.");
     } finally {
       setSubmitting(false);
     }
   };
+
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
