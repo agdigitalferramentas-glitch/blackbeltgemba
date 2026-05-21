@@ -1,11 +1,12 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "bun"]
-
-[phases.install]
-cmds = ["bun install"]
-
-[phases.build]
-cmds = ["bun run build"]
-
+ nixPkgs = ["nodejs_20"]
+ 
+ [phases.install]
+ cmds = ["npm install --legacy-peer-deps"]
+ 
+ [phases.build]
+ cmds = ["npm run build"]
+ 
 [start]
-cmd = "bun run preview"
+  cmd = '''${UNIVERSAL_START_CMD}'''
+ 
